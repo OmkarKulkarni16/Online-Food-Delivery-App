@@ -1,0 +1,34 @@
+package com.hdfc.restaurantservice.controller;
+
+import com.hdfc.restaurantservice.entity.Restaurant;
+import com.hdfc.restaurantservice.exceptions.RestaurantNotFoundException;
+import com.hdfc.restaurantservice.service.IRestaurantService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/restaurants")
+public class RestaurantController {
+
+    @Autowired
+    private IRestaurantService restaurantService;
+
+    @PostMapping("/add")
+    public ResponseEntity<Restaurant> addRestaurant(@RequestBody Restaurant restaurant){
+        return ResponseEntity.status(HttpStatus.CREATED).body(restaurantService.addRestaurant(restaurant));
+    }
+
+    @GetMapping("/get-restaurant-by/{restaurantId}")
+    public ResponseEntity<Restaurant> getRestaurantById(@PathVariable int restaurantId) throws RestaurantNotFoundException {
+        return ResponseEntity.status(HttpStatus.OK).body(restaurantService.getRestaurantById(restaurantId));
+    }
+
+    @GetMapping("/getAllRestaurant")
+    public ResponseEntity<List<Restaurant>> getAllRestaurant(){
+        return ResponseEntity.ok(restaurantService.getAllRestaurant());
+    }
+}

@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/UserService.iml" filepath="$PROJECT_DIR$/.idea/UserService.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/UserService.UserService.main.iml" filepath="$PROJECT_DIR$/.idea/modules/UserService.UserService.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.hdfc.user.service.UserService.main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.hdfc.user.service.UserService.main.iml" />
     </modules>
   </component>
 </project>
