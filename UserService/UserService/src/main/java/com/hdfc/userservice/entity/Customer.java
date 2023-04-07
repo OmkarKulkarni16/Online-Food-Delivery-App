@@ -4,6 +4,7 @@ package com.hdfc.userservice.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,4 +22,7 @@ public class Customer {
     private String customerPhoneNumber;
 
     private String customerDeliveryAddress;
+
+    @Transient //do not save in database
+    private List<Rating> customerRating;
 }
