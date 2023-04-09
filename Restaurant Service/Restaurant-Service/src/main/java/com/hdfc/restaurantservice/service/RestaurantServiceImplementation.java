@@ -26,4 +26,19 @@ public class RestaurantServiceImplementation implements IRestaurantService{
     public Restaurant getRestaurantById(int restaurantId) throws RestaurantNotFoundException {
         return restaurantRepository.findById(restaurantId).orElseThrow(()->new RestaurantNotFoundException("Restaurant not found with id = "+restaurantId));
     }
+
+    @Override
+    public List<Restaurant> searchByRestaurantLocation(String restaurantLocation) {
+        return restaurantRepository.findByCity(restaurantLocation);
+    }
+
+    @Override
+    public Restaurant updateRestaurant(Restaurant restaurant) {
+        return restaurantRepository.save(restaurant);
+    }
+
+    @Override
+    public List<Restaurant> searchByRestaurantName(String restaurantName) {
+        return restaurantRepository.findByRestaurantName(restaurantName);
+    }
 }

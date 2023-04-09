@@ -14,5 +14,11 @@ public interface IRestaurantService {
     public Restaurant getRestaurantById(int restaurantId) throws RestaurantNotFoundException;
 
 
+    public List<Restaurant> searchByRestaurantLocation(String restaurantLocation);
+
+    public Restaurant updateRestaurant(Restaurant restaurant);
+
+    public List<Restaurant> searchByRestaurantName(String restaurantName);
+
 
 }

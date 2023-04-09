@@ -12,7 +12,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler
     public ResponseEntity<ApiResponse> handleCustomerNotFoundException(CustomerNotFoundException exception) {
           String message =   exception.getMessage();
-          ApiResponse response = ApiResponse.builder().message(message).success(true).status(HttpStatus.NOT_FOUND).build();
+          ApiResponse response = ApiResponse.builder().message(message).success(false).status(HttpStatus.NOT_FOUND).build();
 
           return  new ResponseEntity<ApiResponse>(response, HttpStatus.NOT_FOUND);
     }
