@@ -1,5 +1,6 @@
 package com.hdfc.ratingservice.repository;
 
+
 import com.hdfc.ratingservice.entity.Rating;
 import org.springframework.data.jpa.repository.JpaRepository;
 

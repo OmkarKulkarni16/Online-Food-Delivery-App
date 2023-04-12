@@ -21,4 +21,5 @@ public interface IRestaurantService {
     public List<Restaurant> searchByRestaurantName(String restaurantName);
 
 
+    public List<Restaurant> searchByCuisineType(String cuisineType);
 }

@@ -1,4 +1,4 @@
-package com.hdfc.userservice.entity;
+package com.hdfc.userservice.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

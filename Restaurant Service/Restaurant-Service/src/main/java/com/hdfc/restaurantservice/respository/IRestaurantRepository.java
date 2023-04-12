@@ -14,4 +14,6 @@ public interface IRestaurantRepository extends JpaRepository<Restaurant,Integer>
 
     @Query(value = "SELECT * FROM restaurants  WHERE  restaurant_name  LIKE %?1%",nativeQuery = true )
     public  List<Restaurant> findByRestaurantName( String restaurantName);
+    @Query(value = "SELECT * FROM restaurants  WHERE  cuisine_type  LIKE %?1%",nativeQuery = true )
+    public List<Restaurant> findByCuisineType(String cuisineType);
 }

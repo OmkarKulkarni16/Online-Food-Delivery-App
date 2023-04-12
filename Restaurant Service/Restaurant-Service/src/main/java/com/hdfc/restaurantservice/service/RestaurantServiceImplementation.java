@@ -14,6 +14,13 @@ public class RestaurantServiceImplementation implements IRestaurantService{
     private IRestaurantRepository restaurantRepository;
     @Override
     public Restaurant addRestaurant(Restaurant restaurant) {
+//        Restaurant restaurant  = new Restaurant();
+//        restaurant.setRestaurantId(restaurantDto.getRestaurantId());
+//        restaurant.setRestaurantName(restaurantDto.getRestaurantName());
+//        restaurant.setCuisineType(restaurantDto.getCuisineType());
+//        restaurant.setLocation(restaurantDto.getLocation());
+//        restaurant.setCity(restaurantDto.getCity());
+////        restaurantDto.setMenuItems(restaurantDto.getMenuItems());
         return restaurantRepository.save(restaurant);
     }
 
@@ -34,11 +41,23 @@ public class RestaurantServiceImplementation implements IRestaurantService{
 
     @Override
     public Restaurant updateRestaurant(Restaurant restaurant) {
+//        Restaurant restaurant  = new Restaurant();
+//        restaurant.setRestaurantId(restaurantDto.getRestaurantId());
+//        restaurant.setRestaurantName(restaurantDto.getRestaurantName());
+//        restaurant.setCuisineType(restaurantDto.getCuisineType());
+//        restaurant.setLocation(restaurantDto.getLocation());
+//        restaurant.setCity(restaurantDto.getCity());
+//        restaurantDto.setMenuItems(restaurantDto.getMenuItems());
         return restaurantRepository.save(restaurant);
     }
 
     @Override
     public List<Restaurant> searchByRestaurantName(String restaurantName) {
         return restaurantRepository.findByRestaurantName(restaurantName);
+    }
+
+    @Override
+    public List<Restaurant> searchByCuisineType(String cuisineType) {
+        return restaurantRepository.findByCuisineType(cuisineType);
     }
 }

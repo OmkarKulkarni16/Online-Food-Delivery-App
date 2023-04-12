@@ -1,5 +1,6 @@
 package com.hdfc.userservice.restcontroller;
 
+import com.hdfc.userservice.dto.CustomerDTO;
 import com.hdfc.userservice.entity.Customer;
 import com.hdfc.userservice.exceptions.CustomerNotFoundException;
 import com.hdfc.userservice.exceptions.validations.PhoneNumberException;
@@ -20,9 +21,9 @@ public class CustomerController {
 
 
     @PostMapping("/add")
-    public ResponseEntity<Customer> addCustomers(@RequestBody Customer customer) throws PhoneNumberException {
+    public ResponseEntity<Customer> addCustomers(@RequestBody CustomerDTO customerDto) throws PhoneNumberException {
 
-             Customer customer1 = customerService.addCustomer(customer);
+             Customer customer1 = customerService.addCustomer(customerDto);
              return ResponseEntity.status(HttpStatus.CREATED).body(customer1);
 
 
@@ -42,8 +43,8 @@ public class CustomerController {
    }
 
    @PutMapping("/update-customer")
-    public ResponseEntity<Customer> updateCustomer(@RequestBody Customer customer){
-        Customer customer1 = customerService.updateCustomer(customer);
+    public ResponseEntity<Customer> updateCustomer(@RequestBody CustomerDTO customerDto){
+        Customer customer1 = customerService.updateCustomer(customerDto);
         return ResponseEntity.status(HttpStatus.OK).body(customer1);
 
    }

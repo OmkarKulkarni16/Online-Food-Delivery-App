@@ -1,23 +1,19 @@
-package com.hdfc.restaurantservice.entity;
+package com.hdfc.restaurantservice.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
 import java.util.List;
 
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
-@Entity
-@Table(name = "restaurants")
-public class Restaurant {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class RestaurantDTO {
+
     private int restaurantId;
     private String restaurantName;
     private String cuisineType;
@@ -25,8 +21,6 @@ public class Restaurant {
 
     private String city;
 
-    @OneToMany
-    @JoinColumn(name = "restaurant_id")
-    private List<MenuItem> menuItems;
+    private List<MenuItemDTO> menuItems;
 
 }

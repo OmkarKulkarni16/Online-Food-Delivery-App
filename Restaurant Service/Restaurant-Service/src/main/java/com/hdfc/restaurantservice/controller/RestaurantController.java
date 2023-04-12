@@ -46,4 +46,9 @@ public class RestaurantController {
     public List<Restaurant> searchByRestaurantName(@PathVariable String restaurantName){
         return restaurantService.searchByRestaurantName(restaurantName);
     }
+
+    @GetMapping("/get-by-cuisineType/{cuisineType}")
+    public List<Restaurant> searchByCuisineType(@PathVariable String cuisineType){
+        return restaurantService.searchByCuisineType(cuisineType);
+    }
 }

@@ -1,5 +1,6 @@
 package com.hdfc.ratingservice.service;
 
+import com.hdfc.ratingservice.dto.RatingDTO;
 import com.hdfc.ratingservice.entity.Rating;
 import com.hdfc.ratingservice.repository.IRatingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,14 @@ public class RatingServiceImplementation implements IRatingService{
     @Autowired
     private IRatingRepository ratingRepository;
     @Override
-    public Rating addRating(Rating rating) {
+    public Rating addRating(RatingDTO ratingDto) {
+        Rating rating = new Rating();
+        rating.setRatingId(ratingDto.getRatingId());
+        rating.setCustomerId(ratingDto.getCustomerId());
+        rating.setRestaurantId(ratingDto.getRestaurantId());
+        rating.setRating(ratingDto.getRating());
+        rating.setComments(ratingDto.getComments());
+
         return ratingRepository.save(rating);
     }
 

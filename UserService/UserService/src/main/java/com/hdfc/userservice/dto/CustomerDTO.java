@@ -1,10 +1,8 @@
-package com.hdfc.userservice.entity;
-
+package com.hdfc.userservice.dto;
 
 import com.hdfc.userservice.vo.Rating;
 import lombok.*;
 
-import javax.persistence.*;
 import java.util.List;
 
 @AllArgsConstructor
@@ -12,11 +10,8 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-@Entity
-@Table(name = "micro_customers")
-public class Customer {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class CustomerDTO {
+
     private int customerId;
     private String customerName;
     private String customerEmail;
@@ -24,6 +19,5 @@ public class Customer {
 
     private String customerDeliveryAddress;
 
-    @Transient //do not save in database
     private List<Rating> customerRating;
 }

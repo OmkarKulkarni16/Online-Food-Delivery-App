@@ -1,8 +1,9 @@
 package com.hdfc.userservice.service;
 
+import com.hdfc.userservice.dto.CustomerDTO;
 import com.hdfc.userservice.entity.Customer;
-import com.hdfc.userservice.entity.Rating;
-import com.hdfc.userservice.entity.Restaurant;
+import com.hdfc.userservice.vo.Rating;
+import com.hdfc.userservice.vo.Restaurant;
 import com.hdfc.userservice.exceptions.CustomerNotFoundException;
 import com.hdfc.userservice.repository.ICustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,14 @@ public class UserServiceImplementation implements ICustomerService {
     private RestTemplate restTemplate;
 
     @Override
-    public Customer addCustomer(Customer customer) {
+    public Customer addCustomer(CustomerDTO customerDto) {
+        Customer customer = new Customer();
+        customer.setCustomerId(customerDto.getCustomerId());
+        customer.setCustomerName(customerDto.getCustomerName());
+        customer.setCustomerEmail(customerDto.getCustomerEmail());
+        customer.setCustomerPhoneNumber(customerDto.getCustomerPhoneNumber());
+        customer.setCustomerDeliveryAddress(customerDto.getCustomerDeliveryAddress());
+        customer.setCustomerRating(customerDto.getCustomerRating());
         return customerRepository.save(customer);
     }
 
@@ -51,7 +59,14 @@ public class UserServiceImplementation implements ICustomerService {
     }
 
     @Override
-    public Customer updateCustomer(Customer customer) {
+    public Customer updateCustomer(CustomerDTO customerDto) {
+        Customer customer = new Customer();
+        customer.setCustomerId(customerDto.getCustomerId());
+        customer.setCustomerName(customerDto.getCustomerName());
+        customer.setCustomerEmail(customerDto.getCustomerEmail());
+        customer.setCustomerPhoneNumber(customerDto.getCustomerPhoneNumber());
+        customer.setCustomerDeliveryAddress(customerDto.getCustomerDeliveryAddress());
+        customer.setCustomerRating(customerDto.getCustomerRating());
         return customerRepository.save(customer);
     }
 

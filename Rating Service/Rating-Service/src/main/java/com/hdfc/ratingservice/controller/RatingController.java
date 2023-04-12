@@ -1,5 +1,6 @@
 package com.hdfc.ratingservice.controller;
 
+import com.hdfc.ratingservice.dto.RatingDTO;
 import com.hdfc.ratingservice.entity.Rating;
 import com.hdfc.ratingservice.service.IRatingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,8 @@ public class RatingController {
     IRatingService ratingService;
 
     @PostMapping("/add")
-    public ResponseEntity<Rating> addRating(@RequestBody Rating rating){
-        return ResponseEntity.status(HttpStatus.CREATED).body(ratingService.addRating(rating));
+    public ResponseEntity<Rating> addRating(@RequestBody RatingDTO ratingDto){
+        return ResponseEntity.status(HttpStatus.CREATED).body(ratingService.addRating(ratingDto));
     }
 
     @GetMapping("/getAllRating")
