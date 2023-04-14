@@ -74,4 +74,9 @@ public class UserServiceImplementation implements ICustomerService {
     public void deleteCustomerById(int customerId) {
         customerRepository.deleteById(customerId);
     }
+
+    @Override
+    public boolean existById(int customerId) {
+        return customerRepository.existsById(customerId);
+    }
 }

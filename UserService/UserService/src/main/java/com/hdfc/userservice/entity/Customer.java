@@ -13,15 +13,20 @@ import java.util.List;
 @Setter
 @ToString
 @Entity
-@Table(name = "micro_customers")
+@Table(name = "microCustomers")
 public class Customer {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "customerid")
     private int customerId;
+    @Column(name = "customername")
     private String customerName;
+    @Column(name = "customeremail")
     private String customerEmail;
+    @Column(name = "customerphonenumber")
     private String customerPhoneNumber;
 
+    @Column(name = "customerdeliveryaddress")
     private String customerDeliveryAddress;
 
     @Transient //do not save in database

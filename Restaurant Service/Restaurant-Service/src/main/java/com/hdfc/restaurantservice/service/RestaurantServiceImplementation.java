@@ -60,4 +60,14 @@ public class RestaurantServiceImplementation implements IRestaurantService{
     public List<Restaurant> searchByCuisineType(String cuisineType) {
         return restaurantRepository.findByCuisineType(cuisineType);
     }
+
+    @Override
+    public void deleteRestaurantById(int restaurantId) {
+        restaurantRepository.deleteById(restaurantId);
+    }
+
+    @Override
+    public boolean existsById(int restaurantId) {
+        return restaurantRepository.existsById(restaurantId);
+    }
 }

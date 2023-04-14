@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/UserOperations.iml" filepath="$PROJECT_DIR$/.idea/UserOperations.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/UserOperations.UserOperations.main.iml" filepath="$PROJECT_DIR$/.idea/modules/UserOperations.UserOperations.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.hdfc.UserOperations.UserOperations.main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.hdfc.UserOperations.UserOperations.main.iml" />
     </modules>
   </component>
 </project>

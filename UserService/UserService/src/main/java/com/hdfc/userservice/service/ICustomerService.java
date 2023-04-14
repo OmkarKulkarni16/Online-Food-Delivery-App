@@ -17,4 +17,6 @@ public interface ICustomerService {
     public Customer updateCustomer(CustomerDTO customerDto);
 
     public void deleteCustomerById(int customerId);
+
+    public boolean existById(int customerId);
 }

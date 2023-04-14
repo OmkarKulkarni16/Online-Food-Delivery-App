@@ -2,6 +2,7 @@ package com.hdfc.restaurantservice.service;
 
 
 import com.hdfc.restaurantservice.entity.MenuItem;
+import com.hdfc.restaurantservice.exceptions.RestaurantNotFoundException;
 import com.hdfc.restaurantservice.respository.IMenuItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,5 +50,15 @@ public class MenuItemServiceImplementation implements  IMenuItemService{
     @Override
     public void deleteMenuItemById(int menuItemId) {
         menuItemRepository.deleteById(menuItemId);
+    }
+
+    @Override
+    public MenuItem getMenuItemById(int menuItemId) throws RestaurantNotFoundException {
+        return menuItemRepository.findById(menuItemId).orElseThrow(()->new RestaurantNotFoundException("Restaurant Not Found With Id = "+menuItemId));
+    }
+
+    @Override
+    public boolean existsById(int menuItemId) {
+        return menuItemRepository.existsById(menuItemId);
     }
 }

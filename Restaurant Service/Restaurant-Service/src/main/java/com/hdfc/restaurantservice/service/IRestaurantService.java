@@ -22,4 +22,8 @@ public interface IRestaurantService {
 
 
     public List<Restaurant> searchByCuisineType(String cuisineType);
+
+    public void deleteRestaurantById(int restaurantId);
+
+    public boolean existsById(int restaurantId);
 }

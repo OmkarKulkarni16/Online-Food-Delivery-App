@@ -33,8 +33,12 @@ public class RestaurantController {
     }
 
     @GetMapping("/get-by-location/{location}")
-    public List<Restaurant> getRestaurantByLocation(@PathVariable String location){
-        return restaurantService.searchByRestaurantLocation(location);
+    public List<Restaurant> getRestaurantByLocation(@PathVariable String location) throws RestaurantNotFoundException {
+      if ( restaurantService.searchByRestaurantLocation(location).size() == 0){
+          throw new RestaurantNotFoundException("Restaurant Not Found In Location = "+location);
+      } else{
+          return  restaurantService.searchByRestaurantLocation(location);
+      }
     }
 
     @PutMapping("/update-restaurant")
@@ -43,12 +47,33 @@ public class RestaurantController {
     }
 
     @GetMapping("/get-by-restaurant/{restaurantName}")
-    public List<Restaurant> searchByRestaurantName(@PathVariable String restaurantName){
-        return restaurantService.searchByRestaurantName(restaurantName);
+    public List<Restaurant> searchByRestaurantName(@PathVariable String restaurantName) throws RestaurantNotFoundException {
+        if (restaurantService.searchByRestaurantName(restaurantName).size()==0){
+            throw new RestaurantNotFoundException("Restaurant Not Found With Name = " + restaurantName);
+        }else {
+            return restaurantService.searchByRestaurantName(restaurantName);
+
+        }
     }
 
     @GetMapping("/get-by-cuisineType/{cuisineType}")
-    public List<Restaurant> searchByCuisineType(@PathVariable String cuisineType){
-        return restaurantService.searchByCuisineType(cuisineType);
+    public List<Restaurant> searchByCuisineType(@PathVariable String cuisineType) throws RestaurantNotFoundException {
+        if (restaurantService.searchByCuisineType(cuisineType).size() == 0){
+            throw new RestaurantNotFoundException("Restaurant Not Found With Cuisine Type = "+cuisineType);
+        }else {
+            return restaurantService.searchByCuisineType(cuisineType);
+
+        }
+    }
+
+    @DeleteMapping("/delete-by-id/{restaurantId}")
+    public ResponseEntity<String> deleteRestaurantById(@PathVariable int restaurantId) throws RestaurantNotFoundException {
+        if (restaurantService.existsById(restaurantId)){
+            restaurantService.deleteRestaurantById(restaurantId);
+            return  ResponseEntity.status(HttpStatus.GONE).body("Restaurant Successfully Deleted");
+        }else {
+            throw new RestaurantNotFoundException("Restaurant Not Found With Id = "+restaurantId);
+        }
+
     }
 }

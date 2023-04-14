@@ -1,6 +1,6 @@
 package com.hdfc.userservice.exceptions;
 
-import com.hdfc.userservice.exceptions.validations.PhoneNumberException;
+import com.hdfc.userservice.exceptions.validations.ValidationException;
 import com.hdfc.userservice.payload.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +17,9 @@ public class GlobalExceptionHandler {
           return  new ResponseEntity<ApiResponse>(response, HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(PhoneNumberException.class)
-    public ResponseEntity<String> handlePhoneNumberException(PhoneNumberException exception){
+   @ExceptionHandler(ValidationException.class)
+    public ResponseEntity<String> handleValidationException(ValidationException exception){
         return new ResponseEntity<>(exception.getMessage(),HttpStatus.BAD_REQUEST);
-    }
+
+   }
 }

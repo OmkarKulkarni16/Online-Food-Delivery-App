@@ -1,0 +1,36 @@
+    FOR CUSTOMER NAME
+_________________________________________________________
+[A-Z] match a single capital letter (first letter of name)
+
+[a-z]* match any number of small letters (other letters or name)
+
+(\s) match 1 whitespace character (the space between names)
+
++ one or more of the previous expression (to match more than one name)
+
+all together:
+
+- matches first names / lastname -
+^([A-Z][a-z]*((\s)))+[A-Z][a-z]*$
+
+example
+Omkar Kulkarni
+Omkar Sunil Kulkarni
+
+----------------------------------------------------------------------
+
+FOR CUSTOMER EMAIL
+
+So some of the email addresses that will be valid via this email validation technique are:
+   user@domain.com
+   user@domain.co.in
+   user1@domain.com
+   user.name@domain.com
+   user#@domain.co.in
+   user@domaincom
+
+------------------------------------------------------------------------------
+
+    FOR CUSTOMER MOBILE NUMBER
+    9423126987
+    +919423126987

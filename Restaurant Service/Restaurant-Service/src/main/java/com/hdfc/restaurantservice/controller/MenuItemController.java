@@ -2,6 +2,7 @@ package com.hdfc.restaurantservice.controller;
 
 
 import com.hdfc.restaurantservice.entity.MenuItem;
+import com.hdfc.restaurantservice.exceptions.RestaurantNotFoundException;
 import com.hdfc.restaurantservice.service.IMenuItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -40,5 +41,12 @@ public class MenuItemController {
     public ResponseEntity<String> deleteById(@PathVariable int menuItemId){
         menuItemService.deleteMenuItemById(menuItemId);
         return ResponseEntity.status(HttpStatus.GONE).body("Menu Item Got Deleted Successfully");
+    }
+
+
+    @GetMapping("/get-by/{menuItemId}")
+    public MenuItem getMenuItemById(@PathVariable int menuItemId) throws RestaurantNotFoundException {
+
+        return menuItemService.getMenuItemById(menuItemId);
     }
 }

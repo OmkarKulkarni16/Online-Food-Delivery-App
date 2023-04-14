@@ -19,6 +19,13 @@ public class RatingController {
 
     @PostMapping("/add")
     public ResponseEntity<Rating> addRating(@RequestBody RatingDTO ratingDto){
+        if (ratingDto.getCustomerId() > 0 && ratingDto.getCustomerId() > 0){
+            if (ratingDto.getRating() >=0 && ratingDto.getRating() <=5){
+                if (ratingDto.getComments().length() > 0){
+
+                }
+            }
+        }
         return ResponseEntity.status(HttpStatus.CREATED).body(ratingService.addRating(ratingDto));
     }
 
