@@ -54,7 +54,7 @@ public class MenuItemServiceImplementation implements  IMenuItemService{
 
     @Override
     public MenuItem getMenuItemById(int menuItemId) throws RestaurantNotFoundException {
-        return menuItemRepository.findById(menuItemId).orElseThrow(()->new RestaurantNotFoundException("Restaurant Not Found With Id = "+menuItemId));
+        return menuItemRepository.findById(menuItemId).orElseThrow(()->new RestaurantNotFoundException("Menu Item Not Found With Id = "+menuItemId));
     }
 
     @Override

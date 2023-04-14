@@ -15,5 +15,8 @@ public interface IRatingService {
 
     public List<Rating> getRatingByRestaurantId(int restaurantId);
 
+    public boolean existWithId(int Id);
+
+
 
 }

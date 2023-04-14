@@ -39,4 +39,9 @@ public class RatingServiceImplementation implements IRatingService{
     public List<Rating> getRatingByRestaurantId(int restaurantId) {
         return ratingRepository.findByRestaurantId(restaurantId);
     }
+
+    @Override
+    public boolean existWithId(int id) {
+        return ratingRepository.existsById(id);
+    }
 }
