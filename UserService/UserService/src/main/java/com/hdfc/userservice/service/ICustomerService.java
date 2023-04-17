@@ -8,15 +8,15 @@ import java.util.List;
 
 public interface ICustomerService {
 
-    public Customer addCustomer(CustomerDTO customerDto);
+    Customer addCustomer(CustomerDTO customerDto);
 
-    public List<Customer> getAllCustomer();
+    List<Customer> getAllCustomer();
 
-    public Customer getCustomerById(int customerId) throws CustomerNotFoundException;
+    Customer getCustomerById(int customerId) throws CustomerNotFoundException;
 
-    public Customer updateCustomer(CustomerDTO customerDto);
+    Customer updateCustomer(CustomerDTO customerDto);
 
-    public void deleteCustomerById(int customerId);
+    void deleteCustomerById(int customerId);
 
-    public boolean existById(int customerId);
+    boolean existById(int customerId);
 }

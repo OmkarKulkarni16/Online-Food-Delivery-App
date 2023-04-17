@@ -19,7 +19,7 @@ import java.util.List;
 @RequestMapping("/customers")
 public class CustomerController {
 
-    private Logger logger = LoggerFactory.getLogger(CustomerController.class);
+    private final Logger logger = LoggerFactory.getLogger(CustomerController.class);
 
     String regexForCustomerName = "^([A-Z][a-z]*((\\s)))+[A-Z][a-z]*$";
     String regexForCustomerEmail = "^(.+)@(.+)$";

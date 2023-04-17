@@ -20,13 +20,13 @@ public class Cart {
     private int restaurantId;
     @Column(name = "menuitemid")
     private int menuItemId;
-   @Column(name = "quantity")
+    @Column(name = "quantity")
     private int quantity;
-   @Column(name = "restaurantname")
+    @Column(name = "restaurantname")
     private String restaurantName;
-@Column(name = "menuitemname")
+    @Column(name = "menuitemname")
     private String menuItemName;
-@Column(name = "amount")
+    @Column(name = "amount")
     private float amount;
 
 
