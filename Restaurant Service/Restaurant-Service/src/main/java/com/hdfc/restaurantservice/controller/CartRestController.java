@@ -5,6 +5,8 @@ import com.hdfc.restaurantservice.dto.ResponseOrderDTO;
 import com.hdfc.restaurantservice.entity.Customer;
 import com.hdfc.restaurantservice.entity.Order;
 import com.hdfc.restaurantservice.entity.RestTemplateCustomer;
+import com.hdfc.restaurantservice.exceptions.MenuItemException;
+import com.hdfc.restaurantservice.exceptions.OrderException;
 import com.hdfc.restaurantservice.exceptions.RestaurantNotFoundException;
 import com.hdfc.restaurantservice.service.CustomerService;
 import com.hdfc.restaurantservice.service.OrderService;
@@ -38,27 +40,28 @@ public class CartRestController {
 
 
     @GetMapping(value = "/getOrder/{orderId}")
-    public ResponseEntity<Order> getOrderDetails(@PathVariable int orderId) {
+    public ResponseEntity<Order> getOrderDetails(@PathVariable int orderId) throws OrderException {
 
         Order order = orderService.getOrderDetail(orderId);
         return ResponseEntity.ok(order);
     }
+
     @PostMapping("/placeOrder")
-    public ResponseEntity<ResponseOrderDTO> placeOrder(@RequestBody OrderDTO orderDTO) throws RestaurantNotFoundException {
+    public ResponseEntity<ResponseOrderDTO> placeOrder(@RequestBody OrderDTO orderDTO) throws RestaurantNotFoundException, MenuItemException {
         logger.info("Request Payload " + orderDTO.toString());
 
         ResponseOrderDTO responseOrderDTO = new ResponseOrderDTO();
         float amount = orderService.getCartAmount(orderDTO.getCartItems());
 
         Customer customer = new Customer();
-        RestTemplateCustomer customer1 = restTemplate.getForObject("http://localhost:8081/customers/getById/"+orderDTO.getCustomerId(), RestTemplateCustomer.class);
+        RestTemplateCustomer customer1 = restTemplate.getForObject("http://localhost:8081/customers/getById/" + orderDTO.getCustomerId(), RestTemplateCustomer.class);
         customer.setCustomerName(customer1.getCustomerName());
         customer.setCustomerEmail(customer1.getCustomerEmail());
         customer.setCustomerId(customer1.getCustomerId());
         customer.setCustomerDeliveryAddress(customer1.getCustomerDeliveryAddress());
 
 
-        Customer customer2 = new Customer(customer.getCustomerName(),customer.getCustomerEmail(), customer.getCustomerId(), customer.getCustomerDeliveryAddress());
+        Customer customer2 = new Customer(customer.getCustomerName(), customer.getCustomerEmail(), customer.getCustomerId(), customer.getCustomerDeliveryAddress());
         Integer customerIdFromDb = customerService.isCustomerPresent(customer2);
         if (customerIdFromDb != null) {
             customer.setId(customerIdFromDb);
@@ -69,7 +72,7 @@ public class CartRestController {
         }
 
 
-        Order order = new Order(orderDTO.getPaymentMethod(), customer2,orderDTO.getCartItems());
+        Order order = new Order(orderDTO.getPaymentMethod(), customer2, orderDTO.getCartItems());
         order = orderService.saveOrder(order);
 
         responseOrderDTO.setAmount(amount);

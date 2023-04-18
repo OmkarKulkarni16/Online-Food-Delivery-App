@@ -12,4 +12,14 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleRestaurantNotFoundException(RestaurantNotFoundException exception) {
        return new ResponseEntity<>(exception.getMessage(),HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler
+    public ResponseEntity<String> handleMenuItemException(MenuItemException exception){
+        return new ResponseEntity<>(exception.getMessage(),HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<String> handleOrderException(OrderException exception){
+        return new ResponseEntity<>(exception.getMessage(),HttpStatus.BAD_REQUEST);
+    }
 }

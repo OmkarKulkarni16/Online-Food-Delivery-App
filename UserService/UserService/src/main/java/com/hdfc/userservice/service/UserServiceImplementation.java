@@ -42,9 +42,10 @@ public class UserServiceImplementation implements ICustomerService {
     }
 
     @Override
-    public Customer getCustomerById(int customerId) throws CustomerNotFoundException {
+    public Customer getRatingByCustomerId(int customerId) throws CustomerNotFoundException {
         Customer customer = customerRepository.findById(customerId).orElseThrow(() -> new CustomerNotFoundException("Customer Not Found With ID = " + customerId));
-        Rating[] ratingsOfCustomer = restTemplate.getForObject("http://localhost:8083/ratings/get-by-customerId/" + customerId, Rating[].class);
+
+        Rating[] ratingsOfCustomer = restTemplate.getForObject("http://localhost:8083/ratings/get-by-customerId/"+customerId, Rating[].class);
         List<Rating> ratings = Arrays.stream(ratingsOfCustomer).toList();
         List<Rating> ratingList = ratings.stream().map(rating -> {
 //          Api service to call restaurant service
@@ -78,5 +79,10 @@ public class UserServiceImplementation implements ICustomerService {
     @Override
     public boolean existById(int customerId) {
         return customerRepository.existsById(customerId);
+    }
+
+    @Override
+    public Customer getByCustomerId(int customerId) throws CustomerNotFoundException {
+      return customerRepository.findById(customerId).orElseThrow(() -> new CustomerNotFoundException("Customer Not Found With ID = " + customerId));
     }
 }

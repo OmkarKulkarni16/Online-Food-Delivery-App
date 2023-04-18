@@ -12,11 +12,13 @@ public interface ICustomerService {
 
     List<Customer> getAllCustomer();
 
-    Customer getCustomerById(int customerId) throws CustomerNotFoundException;
+    Customer getRatingByCustomerId(int customerId) throws CustomerNotFoundException;
 
     Customer updateCustomer(CustomerDTO customerDto);
 
     void deleteCustomerById(int customerId);
 
     boolean existById(int customerId);
+
+    Customer getByCustomerId(int customerId) throws CustomerNotFoundException;
 }

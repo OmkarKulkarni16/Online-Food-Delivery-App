@@ -4,6 +4,8 @@ import com.hdfc.restaurantservice.entity.Cart;
 import com.hdfc.restaurantservice.entity.MenuItem;
 import com.hdfc.restaurantservice.entity.Order;
 import com.hdfc.restaurantservice.entity.Restaurant;
+import com.hdfc.restaurantservice.exceptions.MenuItemException;
+import com.hdfc.restaurantservice.exceptions.OrderException;
 import com.hdfc.restaurantservice.respository.IMenuItemRepository;
 import com.hdfc.restaurantservice.respository.IOrderRepository;
 import com.hdfc.restaurantservice.respository.IRestaurantRepository;
@@ -43,14 +45,19 @@ public class OrderService {
 //    }
 
 
-    public Order getOrderDetail(int orderId) {
+    public Order getOrderDetail(int orderId) throws OrderException {
         Optional<Order> order = this.orderRepository.findById(orderId);
-        return order.isPresent() ? order.get() : null;
+        if (order.isPresent()){
+            return order.get();
+        }else {
+            throw new OrderException("Order history not found with Id = "+orderId);
+        }
+//        return order.isPresent() ? order.get() : null;
     }
 
     private Logger logger = LoggerFactory.getLogger(OrderService.class);
 
-    public float getCartAmount(List<Cart> cartList) {
+    public float getCartAmount(List<Cart> cartList) throws MenuItemException {
         float totalCartAmount = 0f;
         float singleCartAmount = 0f;
         int availableQuantity = 0;
@@ -67,8 +74,9 @@ public class OrderService {
                MenuItem menuItem1 = menuItem.get();
                logger.info("Avab = "+menuItem1.getAvailability() +"And = "+ cart.getQuantity());
                if (menuItem1.getAvailability()< cart.getQuantity()){
-                   singleCartAmount = menuItem1.getPrice() * menuItem1.getAvailability();
-                   cart.setQuantity(menuItem1.getAvailability());
+                     throw new MenuItemException();
+//                   singleCartAmount = menuItem1.getPrice() * menuItem1.getAvailability();
+//                   cart.setQuantity(menuItem1.getAvailability());
                }else {
                    singleCartAmount = cart.getQuantity() * menuItem1.getPrice();
                    availableQuantity = menuItem1.getAvailability() - cart.getQuantity();

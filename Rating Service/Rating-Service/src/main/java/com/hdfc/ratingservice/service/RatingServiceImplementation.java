@@ -26,6 +26,18 @@ public class RatingServiceImplementation implements IRatingService{
     }
 
     @Override
+    public Rating updateRating(RatingDTO ratingDto) {
+        Rating rating = new Rating();
+        rating.setRatingId(ratingDto.getRatingId());
+        rating.setCustomerId(ratingDto.getCustomerId());
+        rating.setRestaurantId(ratingDto.getRestaurantId());
+        rating.setRating(ratingDto.getRating());
+        rating.setComments(ratingDto.getComments());
+
+        return ratingRepository.save(rating);
+    }
+
+    @Override
     public List<Rating> getAllRating() {
         return ratingRepository.findAll();
     }
@@ -38,6 +50,11 @@ public class RatingServiceImplementation implements IRatingService{
     @Override
     public List<Rating> getRatingByRestaurantId(int restaurantId) {
         return ratingRepository.findByRestaurantId(restaurantId);
+    }
+
+    @Override
+    public void deleteRating(int ratingId) {
+        ratingRepository.deleteById(ratingId);
     }
 
     @Override

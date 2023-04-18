@@ -43,9 +43,9 @@ public class CustomerController {
 
     }
 
-    @GetMapping("/getById/{customerId}")
-    public ResponseEntity<Customer> getCustomerById(@PathVariable int customerId) throws CustomerNotFoundException {
-        Customer customer = customerService.getCustomerById(customerId);
+    @GetMapping("/getRatingBy/{customerId}")
+    public ResponseEntity<Customer> getRatingByCustomerId(@PathVariable int customerId) throws CustomerNotFoundException {
+        Customer customer = customerService.getRatingByCustomerId(customerId);
         return ResponseEntity.ok(customer);
 
     }
@@ -78,4 +78,12 @@ public class CustomerController {
         }
 
     }
+
+
+    @GetMapping("/getCustomerBy/{customerId}")
+    public ResponseEntity<Customer> getCustomerById(@PathVariable int customerId) throws CustomerNotFoundException {
+        Customer customer = customerService.getByCustomerId(customerId);
+        return ResponseEntity.ok(customer);
+    }
+
 }
